@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybeatis.demo.mapper.EmployeeMapper">
+   <!--    public Employee getEmpById(Integer id);
+
+    public void insertEmp(Employee employee);-->
+    <resultMap id="BaseResultMap" type="com.mybeatis.demo.bean.Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="last" />
+        <result column="email" property="email" />
+        <result column="did" property="did" />
+        <result column="gender" property="gender" />
+    </resultMap>
+
+    <select id="getEmpById" resultMap="BaseResultMap">
+        SELECT * FROM employee WHERE id=#{id}
+    </select>
+
+
+    <select id="getAllInfo"  parameterType="map"  resultMap="BaseResultMap">
+        SELECT *  FROM employee
+    </select>
+
+    <insert id="insertEmp">
+        INSERT INTO employee(lastName,email,gender,d_id) VALUES (#{last},#{email},#{gender},#{did})
+    </insert>
+</mapper>
